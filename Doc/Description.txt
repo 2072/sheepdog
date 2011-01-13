@@ -1,0 +1,11 @@
+A very simple add-on that should prevent you from breaking crowd control spell.
+
+** Planed features: **
+
+- Warn you gently when a unit has been crowd controlled somewhere nearby.
+
+- Bark when you are targeting a crowd controlled unit.
+
+- Should be able to disable itself depending on the player role
+
+
