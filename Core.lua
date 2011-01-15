@@ -253,6 +253,8 @@ do
     end
 end -- }}}
 
+local SOUND_PLAYED = false;
+
 -- Events handlers {{{
 function SD:UNIT_AURA(selfevent, unit, other)
     --self:Debug("UNIT_AURA", unit, other);
@@ -262,6 +264,8 @@ function SD:UNIT_AURA(selfevent, unit, other)
 
         if is_CC then
             self:TargetIsCrowdControlled();
+        else
+            SOUND_PLAYED = false;
         end
     end
 end
@@ -274,6 +278,8 @@ end
 function SD:PLAYER_TARGET_CHANGED()
     self:Debug("PLAYER_TARGET_CHANGED");
 
+    SOUND_PLAYED = false;
+
     -- scans debuffs
     local is_CC = self:Check_Unit('target');
 
@@ -281,12 +287,21 @@ function SD:PLAYER_TARGET_CHANGED()
         self:TargetIsCrowdControlled();
     end
 
+
 end
 -- }}}
 
 local PlaySoundFile = _G.PlaySoundFile;
 function SD:TargetIsCrowdControlled(ccDebuff)
-    self:Print(L["TARGET_IS_CROWD_CONTROLLED"]);
-    PlaySoundFile(SharedMedias:Fetch('sound', self.db.global.targetingSound));
+
+    if not SOUND_PLAYED then
+        self:Print(L["TARGET_IS_CROWD_CONTROLLED"]);
+
+        PlaySoundFile(SharedMedias:Fetch('sound', self.db.global.targetingSound));
+        SOUND_PLAYED = true;
+    else
+        self:Debug(INFO2, "Sound was already played");
+    end
+
 end
 

@@ -24,3 +24,6 @@ A very simple add-on that should prevent you from breaking crowd control spell.
 - Seduction
 - Shackle Undead
 
+**********************
+Type /sheepdog (Graphical UI) or /shed (command line UI) for options.
+
