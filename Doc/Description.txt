@@ -16,8 +16,10 @@ A very simple add-on that should prevent you from breaking crowd control spell.
 
 - Banish
 - Freezing Trap Effect
+- Hex
 - Hibernate
 - Polymorph
+- Repentance
 - Sap
 - Seduction
 - Shackle Undead

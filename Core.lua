@@ -199,8 +199,10 @@ do
     local CC_SPELLS = {
         710, -- Banish
         31932, -- Freezing Trap Effect
+        51514, -- Hex
         2637, -- Hibernate
         118, -- Polymorph (sheep)
+        20066, -- Repentance
         6770, -- sap
         6358, -- seduction
         9484, -- Shackle Undead
