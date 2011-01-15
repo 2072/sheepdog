@@ -18,8 +18,8 @@
 
 ## X-License: All Rights Reserved
 
-## OptionalDeps: Ace3
-## X-Embeds: Ace3
+## OptionalDeps: Ace3, AceGUI-3.0-SharedMediaWidgets, LibSharedMedia-3.0
+## X-Embeds: Ace3, AceGUI-3.0-SharedMediaWidgets, LibSharedMedia-3.0
 
 ## X-ReleaseDate: "@project-date-iso@"
 ## X-Category: Combat

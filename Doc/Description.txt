@@ -1,11 +1,24 @@
 A very simple add-on that should prevent you from breaking crowd control spell.
 
-** Planed features: **
+**Implemented Features:**
+
+- Bark when you are targeting a crowd controlled unit.
+*Actually I would need a good quality (free) dog barking sound...*
+
+**Planed features:**
 
 - Warn you gently when a unit has been crowd controlled somewhere nearby.
 
-- Bark when you are targeting a crowd controlled unit.
-
 - Should be able to disable itself depending on the player role
 
+
+*Currently supported crowd controlling spells:*
+
+- Banish
+- Freezing Trap Effect
+- Hibernate
+- Polymorph
+- Sap
+- Seduction
+- Shackle Undead
 

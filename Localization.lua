@@ -62,6 +62,11 @@ do
     L["OPT_DEBUG"] = "debug"
     L["OPT_DEBUG_DESC"] = "Enables / disables debugging"
 
+    L["OPT_TARGETING_SOUND"] = "Targetting Sound"
+    L["OPT_TARGETING_SOUND_DESC"] = "Choose the sound SheepDog will play when you target a crowd controlled unit"
+
+    L["TARGET_IS_CROWD_CONTROLLED"] = "Your target is crowd controlled!"
+
     --]==]
     --@end-do-not-package@
 
