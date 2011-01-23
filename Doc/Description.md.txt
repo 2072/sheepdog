@@ -29,7 +29,7 @@ Currently supported crowd-controlling spells:
 
 Type /sheepdog (Graphical UI) or /shed (command line UI) for options (sounds and behavior).
 
-Sheepdog supports [AddonLoader][]: it will be loaded when you enter in combat or if you access to Sheepdog's configuration.
+Sheepdog supports [AddonLoader][]: it will be loaded when you enter in combat or if you access to its configuration.
 
 ![stats](http://www.2072productions.com/to/sheepdogdisplaystats.gif)
 

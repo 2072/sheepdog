@@ -86,10 +86,15 @@ local function GetCoreOptions() -- {{{
         name = "Sheepdog",
         order = 1,
         args = {
+            Description = {
+                type = 'description',
+                name = L["DESCRIPTION"],
+                order = 1,
+            },
             Version_Header = {
                 type = 'header',
                 name = L["VERSION"] .. ' @project-version@ - ' .. L["RELEASE_DATE"] .. ' @project-date-iso@',
-                order = 1,
+                order = 2,
             },
             On = {
                 type = 'toggle',
