@@ -2,19 +2,18 @@
 
 ## X-Compatible-With: 40000
 
-## Title: SheepDog
+## Title: Sheepdog
 ## Notes: A very simple add-on that should prevent you from breaking crowd control spell.
 ## Author: Archarodim
 ## Version: @project-version@
 
 ## LoadManagers: AddonLoader
 
-## X-LoadOn-Slash: /SheepDog
-## X-LoadOn-Always: delayed
+## X-LoadOn-Slash: /Sheepdog, /Shed
+## X-LoadOn-Combat: true
+## X-LoadOn-InterfaceOptions: Sheepdog
 
-# ## X-LoadOn-Combat: true
-
-## SavedVariables: SheepDog
+## SavedVariables: Sheepdog
 
 ## X-License: All Rights Reserved
 
@@ -24,7 +23,7 @@
 ## X-ReleaseDate: "@project-date-iso@"
 ## X-Category: Combat
 ## X-eMail: archarodim@teaser.fr
-## X-Website: http://www.2072productions.com/to/SheepDog.php
+## X-Website: http://www.2072productions.com/to/Sheepdog.php
 
 
 embeds.xml

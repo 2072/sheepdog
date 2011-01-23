@@ -1,5 +1,5 @@
 --[=[
-SheepDog World of Warcraft Add-on
+Sheepdog World of Warcraft Add-on
 Copyright (c) 2011 by John Wellesz (Archarodim@teaser.fr)
 All rights reserved
 
@@ -9,7 +9,7 @@ A very simple add-on that should prevent you from breaking crowd control spell.
 
 This add-on uses the Ace3 framework.
 
-type /SheepDog to get a list of existing options.
+type /Sheepdog to get a list of existing options.
 
 -----
     utils.lua
@@ -25,10 +25,9 @@ local INFO2     = 4;
 
 
 local ADDON_NAME, T = ...;
-local SD = T.SheepDog;
+local SD = T.Sheepdog;
 
-local SD_C = T.SheepDog.Constants;
-
+local SD_C = T.Sheepdog.Constants;
 
 
 function SD:ColorText (text, color) --{{{
@@ -39,7 +38,6 @@ function SD:ColorText (text, color) --{{{
 
     return "|c".. color .. text .. "|r";
 end --}}}
-
 
 
 -- function SD:UnitName(Unit) {{{
@@ -81,9 +79,102 @@ do
 end -- }}}
 
 
--- function HHTD:GetOPtionPath(info) {{{
+-- function SD:GetOPtionPath(info) {{{
 function SD:GetOPtionPath(info)
     return table.concat(info, "->");
+end -- }}}
+
+
+-- function SD:SafeString(value) {{{
+do
+    local type = _G.type;
+    function SD:SafeString(value)
+
+        if type(value) ~= "string" then
+            return type(value);
+        end
+
+        return value;
+
+    end
+end -- }}}
+
+
+-- Class coloring related functions {{{
+local RAID_CLASS_COLORS = _G.RAID_CLASS_COLORS;
+
+SD_C.ClassesColors = { };
+
+local LC = _G.LOCALIZED_CLASS_NAMES_MALE;
+
+function SD:GetClassColor (englishClass) -- {{{
+    if not SD_C.ClassesColors[englishClass] then
+        if RAID_CLASS_COLORS and RAID_CLASS_COLORS[englishClass] then
+            SD_C.ClassesColors[englishClass] = { RAID_CLASS_COLORS[englishClass].r, RAID_CLASS_COLORS[englishClass].g, RAID_CLASS_COLORS[englishClass].b };
+        else
+            SD_C.ClassesColors[englishClass] = { 0.63, 0.63, 0.63 };
+        end
+    end
+    return unpack(SD_C.ClassesColors[englishClass]);
+end -- }}}
+
+SD_C.HexClassColor = { };
+
+function SD:GetClassHexColor(englishClass) -- {{{
+
+    if not SD_C.HexClassColor[englishClass] then
+
+        local r, g, b = self:GetClassColor(englishClass);
+
+        SD_C.HexClassColor[englishClass] = ("FF%02x%02x%02x"):format( r * 255, g * 255, b * 255);
+
+    end
+
+    return SD_C.HexClassColor[englishClass];
+end -- }}}
+
+function SD:CreateClassColorTables () -- {{{
+    if RAID_CLASS_COLORS then
+        local class, colors;
+        for class in pairs(RAID_CLASS_COLORS) do
+            if LC[class] then -- thank to a wonderful add-on that adds the wrong translation "Death Knight" to the global RAID_CLASS_COLORS....
+                SD:GetClassHexColor(class);
+            else
+                RAID_CLASS_COLORS[class] = nil; -- Eat that!
+                print("Sheepdog: |cFFFF0000Stupid value found in _G.RAID_CLASS_COLORS table|r\nThis will cause many issues (tainting), Sheepdog will display this message until the culprit add-on is fixed or removed, the Stupid value is: '", class, "'");
+            end
+        end
+    else
+        SD:Debug(ERROR, "global RAID_CLASS_COLORS does not exist...");
+    end
+end -- }}}
+-- }}}
+
+
+-- function SD:GetHighestBitPostion(num) {{{
+local band      = _G.bit.band;
+function SD:GetHighestBitPostion(num)
+
+    if num == 0 then
+        return 0;
+    end
+
+    if band(num, num-1) ~= 0 then
+        SD:Debug(ERROR, num, "is not a power of 2!", band(num, num-1));
+        return;
+    end
+
+
+    local pos = 1;
+    while num ~= 1 do
+        num = num / 2;
+        pos = pos + 1;
+    end
+
+    if pos > 64 then SD:Debug(ERROR, num, "loop!"); return 0; end
+
+    return pos;
+
 end -- }}}
 
 
