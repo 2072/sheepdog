@@ -49,7 +49,7 @@ do
     L["RELEASE_DATE"] = "Release Date:"
     L["ENABLED"] = "enabled! Type /Sheepdog for options"
     L["DISABLED"] = "Sheepdog has been disabled!"
-    L["DESCRIPTION"] = "A very simple add-on that should prevent you from breaking crowd-controlling spells."
+    L["DESCRIPTION"] = "A very simple add-on that should prevent you from accidentally breaking crowd-control spells."
 
     L["OPT_ON"] = "on"
     L["OPT_ON_DESC"] = "Enables Sheepdog"

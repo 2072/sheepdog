@@ -4,8 +4,8 @@
 
 ## Title: Sheepdog
 
-## Notes: A very simple add-on that should prevent you from breaking crowd-controlling spells.
-## Notes-frFR: Un add-on très simple qui devrait vous aider à ne pas briser les sorts de contrôle d'unité.
+## Notes: A very simple add-on that should prevent you from accidentally breaking crowd-control spells.
+## Notes-frFR: Un add-on très simple qui devrait vous aider à ne pas briser accidentellement les sorts de contrôle d'unité.
 
 ## Author: Archarodim
 ## Version: @project-version@

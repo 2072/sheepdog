@@ -244,12 +244,12 @@ end
 -- }}}
 
 -- CC spells management {{{
-local CC_SPELLS_BY_NAME = {};
-SD_C.CC_SPELLS_BY_NAME = CC_SPELLS_BY_NAME;
+SD_C.CC_SPELLS_BY_NAME = {};
 do
     local CC_SPELLS = {
         710, -- Banish
         76780, -- Bind Elemental
+        5782, -- Fear - there is currently no way to detect glyphed fear so this will also works for normal Fear.
         31932, -- Freezing Trap Effect
         51514, -- Hex
         2637, -- Hibernate
@@ -272,6 +272,9 @@ do
         self:Debug(INFO, "Spells registered!");
     end
 end
+
+local CC_SPELLS_BY_NAME = SD_C.CC_SPELLS_BY_NAME;
+
 -- }}}
 
 
