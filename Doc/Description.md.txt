@@ -1,17 +1,21 @@
 Sheepdog
 ========
 
-A very simple add-on that should prevent you from accidentally breaking crowd-control spells.
+Useful to all classes this very simple add-on will prevent you from *accidentally* attacking crowd-controlled units.
+Sheepdog will keep them safe from you!
 
 Features:
 ---------
 
-- Barks when you target a crowd-controlled unit.
+- It barks when you target a crowd-controlled unit.
 
-- Warn you gently when a unit has been crowd-controlled somewhere nearby.
+- It warns you gently when a unit has been crowd-controlled somewhere nearby so you
+  can be a little bit more cautious with your AOEs.
 
-Currently supported crowd-control spells:
------------------------------------------
+**Sheepdog does not bite**
+
+Currently detected crowd-control spells:
+----------------------------------------
 
 - Banish
 - Bind Elemental
