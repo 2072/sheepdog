@@ -1,11 +1,16 @@
 ## Interface: 40000
 
-## X-Compatible-With: 40000
-
 ## Title: Sheepdog
 
-## Notes: A very simple add-on that should prevent you from accidentally breaking crowd-control spells.
-## Notes-frFR: Un add-on très simple qui devrait vous aider à ne pas briser accidentellement les sorts de contrôle d'unité.
+## Notes: @localization(locale="enUS", key="DESCRIPTION")@
+## Notes-frFR: @localization(locale="frFR", key="DESCRIPTION")@
+## Notes-deDE: @localization(locale="deDE", key="DESCRIPTION")@
+## Notes-esES: @localization(locale="esES", key="DESCRIPTION")@
+## Notes-esMX: @localization(locale="esMX", key="DESCRIPTION")@
+## Notes-koKR: @localization(locale="koKR", key="DESCRIPTION")@
+## Notes-ruRU: @localization(locale="ruRU", key="DESCRIPTION")@
+## Notes-zhCN: @localization(locale="zhCN", key="DESCRIPTION")@
+## Notes-zhTW: @localization(locale="zhTW", key="DESCRIPTION")@
 
 ## Author: Archarodim
 ## Version: @project-version@
@@ -15,6 +20,9 @@
 ## X-LoadOn-Slash: /Sheepdog, /Shed
 ## X-LoadOn-Combat: true
 ## X-LoadOn-InterfaceOptions: Sheepdog
+## X-Compatible-With: 40000
+## X-Max-Interface: 40000
+## X-Min-Interface: 30300
 
 ## SavedVariables: Sheepdog
 

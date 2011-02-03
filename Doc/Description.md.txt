@@ -12,7 +12,7 @@ Features:
 - It warns you gently when a unit has been crowd-controlled somewhere nearby so you
   can be a little bit more cautious with your AOEs.
 
-**Sheepdog does not bite**
+**Sheepdog doesn't bite!**
 
 Currently detected crowd-control spells:
 ----------------------------------------
