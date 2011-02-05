@@ -161,6 +161,7 @@ local function GetCoreOptions() -- {{{
                 type = 'toggle',
                 name = L["OPT_DEBUG"],
                 desc = L["OPT_DEBUG_DESC"],
+                guiHidden = true,
                 order = 1000,
             },
             WelcomeMessage = {
