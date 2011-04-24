@@ -44,6 +44,10 @@ local SD = T.Sheepdog;
 local SharedMedias = LibStub("LibSharedMedia-3.0");
 local LSM = LibStub("AceGUISharedMediaWidgets-1.0");
 
+local _, _, _, tocversion = GetBuildInfo();
+T._tocversion = tocversion;
+
+
 
 --@debug@
 _SD_DEBUG = SD;
@@ -260,6 +264,7 @@ do
         6358, -- seduction
         9484, -- Shackle Undead
         19386, -- Wyvern Sting
+        66070, -- Entangling Roots
     };
 
     function SD:RegisterCCEffects ()
@@ -348,13 +353,22 @@ do
     local UnitGUID  = _G.UnitGUID;
 
     local OUTSIDER = COMBATLOG_OBJECT_AFFILIATION_OUTSIDER;
+    local TOC = T._tocversion;
+    
+    local nothing = 'nothing';
 
-    function SD:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, event, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, arg9, arg10)
+    function SD:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, arg9, arg10)
 
         -- the event must be SPELL_AURA_APPLIED
         if event ~= "SPELL_AURA_APPLIED" then
             --self:Debug(INFO2, "not SPELL_AURA_APPLIED", event);
             return;
+        end
+
+        -- Pre 4.1 compatibility layer
+        if TOC < 40100 and hideCaster ~= nothing then
+            -- call again skipping sourceGUID
+            return self:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, event, nothing, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, arg9, arg10);
         end
 
         -- the spell must be part of CC_SPELLS_BY_NAME
@@ -370,7 +384,7 @@ do
         end
 
         --@debug@
-        sourceGUID = "";
+        sourceGUID = ""; -- to test output
         --@end-debug@
 
         -- we don't care if it's ourself
@@ -383,7 +397,7 @@ do
         if destGUID == UnitGUID('target') then
             self:TargetIsCrowdControlled();
             --@debug@
-            self:UnitCrowdControlledNearBy(destName, destFlags, arg9, arg10, sourceName);
+            --self:UnitCrowdControlledNearBy(destName, destFlags, arg9, arg10, sourceName);
             --@end-debug@
         else
             self:UnitCrowdControlledNearBy(destName, destFlags, arg9, arg10, sourceName);
