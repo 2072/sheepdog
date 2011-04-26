@@ -353,8 +353,8 @@ do
     local UnitGUID  = _G.UnitGUID;
 
     local OUTSIDER = COMBATLOG_OBJECT_AFFILIATION_OUTSIDER;
+
     local TOC = T._tocversion;
-    
     local nothing = 'nothing';
 
     function SD:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, arg9, arg10)
@@ -367,7 +367,6 @@ do
 
         -- Pre 4.1 compatibility layer
         if TOC < 40100 and hideCaster ~= nothing then
-            -- call again skipping sourceGUID
             return self:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, event, nothing, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, arg9, arg10);
         end
 
