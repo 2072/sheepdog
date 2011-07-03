@@ -357,7 +357,7 @@ do
     local TOC = T._tocversion;
     local nothing = 'nothing';
 
-    function SD:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, arg9, arg10)
+    function SD:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellID, spellNAME)
 
         -- the event must be SPELL_AURA_APPLIED
         if event ~= "SPELL_AURA_APPLIED" then
@@ -365,14 +365,9 @@ do
             return;
         end
 
-        -- Pre 4.1 compatibility layer
-        if TOC < 40100 and hideCaster ~= nothing then
-            return self:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, event, nothing, hideCaster, sourceGUID, sourceName, sourceFlags, destGUID, destName, destFlags, arg9, arg10);
-        end
-
         -- the spell must be part of CC_SPELLS_BY_NAME
-        if not CC_SPELLS_BY_NAME[arg10] then
-            --self:Debug(INFO2, "not a cc spell:", arg10);
+        if not CC_SPELLS_BY_NAME[spellNAME] then
+            --self:Debug(INFO2, "not a cc spell:", spellNAME);
             return;
         end
 
@@ -388,7 +383,7 @@ do
 
         -- we don't care if it's ourself
         if sourceGUID == UnitGUID('player') then
-            self:Debug("Nearby filter would have fired");
+            --self:Debug("Nearby filter would have fired");
             return;
         end
 
@@ -396,10 +391,10 @@ do
         if destGUID == UnitGUID('target') then
             self:TargetIsCrowdControlled();
             --@debug@
-            --self:UnitCrowdControlledNearBy(destName, destFlags, arg9, arg10, sourceName);
+            --self:UnitCrowdControlledNearBy(destName, destFlags, arg9, spellNAME, sourceName);
             --@end-debug@
         else
-            self:UnitCrowdControlledNearBy(destName, destFlags, arg9, arg10, sourceName);
+            self:UnitCrowdControlledNearBy(destName, destRaidFlags, spellID, spellNAME, sourceName);
         end
        
     end
@@ -423,7 +418,7 @@ end
 local UnitClass = _G.UnitClass;
 local band      = _G.bit.band;
 local ICON_LIST = _G.ICON_LIST
-function SD:UnitCrowdControlledNearBy(unitName, unitFlags, spellID, spellName, sourceName, sourceGUID)
+function SD:UnitCrowdControlledNearBy(unitName, unitRaidFlags, spellID, spellName, sourceName, sourceGUID)
 
     if not self.db.global.NearbyAlert then
         return;
@@ -435,7 +430,8 @@ function SD:UnitCrowdControlledNearBy(unitName, unitFlags, spellID, spellName, s
     end
 
     -- extract raid target number
-    local raidIcon = SD:GetHighestBitPostion(band(unitFlags, 0x0FF00000) / 0x100000);
+    local raidIcon = SD:GetHighestBitPostion(band(unitRaidFlags, 0xFF));
+    --self:Debug(raidIcon, unitRaidFlags, band(unitRaidFlags, 0xFF));
 
     local message = (L["UNIT_NEARBY_IS_CROWD_CONTROLLED"]):format( 
         ("|cff11cc00|Hspell:%d|h%s|h|r"):format(spellID, self:SafeString( spellName ) ), -- clickable spellname

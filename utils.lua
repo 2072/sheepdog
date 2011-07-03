@@ -66,7 +66,7 @@ do
     function SD:Debug(...)
         if not SD.db.global.Debug then return end;
 
-        local template = type((select(1,...))) == "number" and (select(1, ...)) or false;
+        local template = (type((select(1,...))) == "number" and Debug_Templates[select(1, ...)]) and (select(1, ...)) or false;
 
         local DebugHeader = (Debug_Templates[template]):format(date("%S"), (GetTime() % 1) * 1000);
 
