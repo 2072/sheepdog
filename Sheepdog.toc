@@ -12,7 +12,7 @@
 ## Notes-zhCN: @localization(locale="zhCN", key="DESCRIPTION")@
 ## Notes-zhTW: @localization(locale="zhTW", key="DESCRIPTION")@
 
-## Author: Archarodim
+## Author: John Wellesz
 ## Version: @project-version@
 
 ## LoadManagers: AddonLoader
