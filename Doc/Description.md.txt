@@ -20,7 +20,6 @@ Currently detected crowd-control spells:
 - Banish
 - Bind Elemental
 - Fear (Should be just glyphed-Fear but there is no way to tell them apart)
-- Freezing Trap Effect
 - Hex
 - Hibernate
 - Polymorph
@@ -29,6 +28,7 @@ Currently detected crowd-control spells:
 - Seduction
 - Shackle Undead
 - Wyvern Sting
+- Paralysis
 
 ******
 

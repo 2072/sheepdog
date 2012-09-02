@@ -1,4 +1,4 @@
-## Interface: 40300
+## Interface: 50001
 
 ## Title: Sheepdog
 
@@ -20,7 +20,7 @@
 ## X-LoadOn-Slash: /Sheepdog, /Shed
 ## X-LoadOn-Combat: true
 ## X-LoadOn-InterfaceOptions: Sheepdog
-## X-Max-Interface: 40300
+## X-Max-Interface: 50001
 ## X-Min-Interface: 40200
 
 ## SavedVariables: Sheepdog

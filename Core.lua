@@ -1,6 +1,6 @@
 --[=[
 Sheepdog World of Warcraft Add-on
-Copyright (c) 2011 by John Wellesz (Archarodim@teaser.fr)
+Copyright (c) 2011-2012 by John Wellesz (Archarodim@teaser.fr)
 All rights reserved
 
 Version @project-version@
@@ -252,19 +252,39 @@ end
 SD_C.CC_SPELLS_BY_NAME = {};
 do
     local CC_SPELLS = {
+
+        -- http://www.wowwiki.com/Crowd_control
+
+        -- warlock
         710, -- Banish
-        76780, -- Bind Elemental
         5782, -- Fear - there is currently no way to detect glyphed fear so this will also works for normal Fear.
-        31932, -- Freezing Trap Effect
-        51514, -- Hex
-        2637, -- Hibernate
-        118, -- Polymorph (sheep)
-        20066, -- Repentance
-        6770, -- sap
         6358, -- seduction
+
+        -- shamans
+        76780, -- Bind Elemental
+        51514, -- Hex
+
+        -- druids
+        2637, -- Hibernate
+
+        -- mages
+        118, -- Polymorph (sheep)
+
+        -- paladins
+        20066, -- Repentance
+
+        -- rogues
+        6770, -- sap
+
+        -- priests
         9484, -- Shackle Undead
+
+        -- hunters
+        -- 31932, -- Freezing Trap Effect (too short)
         19386, -- Wyvern Sting
-        66070, -- Entangling Roots
+
+        -- monks
+        115078, -- Paralysis
     };
 
     function SD:RegisterCCEffects ()
