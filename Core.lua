@@ -210,7 +210,7 @@ function SD:OnInitialize()
     end
 
     LibStub("AceConfig-3.0"):RegisterOptionsTable(tostring(self), GetCoreOptions, {"shed"});
-    LibStub("AceConfigDialog-3.0"):AddToBlizOptions(tostring(self));
+    --LibStub("AceConfigDialog-3.0"):AddToBlizOptions(tostring(self));
 
     self:RegisterChatCommand('Sheepdog', function() LibStub("AceConfigDialog-3.0"):Open("Sheepdog") end, true);
     

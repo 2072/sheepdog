@@ -1,6 +1,9 @@
 Sheepdog
 ========
 
+**NOTE: Type /SHEEPDOG to open the configuration panel.**
+*Sheepdog's options are not directly available in the "Interface" panel due to ongoing tainting issues Blizzard is not willing to fix.*
+
 Useful to all classes this very simple add-on will prevent you from *accidentally* attacking crowd-controlled units.
 Sheepdog will keep them safe from you!
 
