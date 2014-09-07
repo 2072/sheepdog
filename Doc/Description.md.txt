@@ -1,6 +1,8 @@
 Sheepdog
 ========
 
+[![Gratipay and Bitcoin donation options](http://img.shields.io/gratipay/2072.svg)](https://www.gratipay.com/2072/)
+
 **NOTE: Type /SHEEPDOG to open the configuration panel.**
 *Sheepdog's options are not directly available in the "Interface" panel due to ongoing tainting issues Blizzard is not willing to fix.*
 
@@ -43,7 +45,7 @@ To report issues or ask for new features, use the [ticket system][tickets].
 
 For anything else, use the [WoWAce forum thread][forum].
 
-
+Bitcoin donation address: **1WMWHi9YYgN3jYekCmGBftSNmMK2Pss4S**
 
 ![stats](http://www.2072productions.com/to/sheepdogdisplaystats.gif)
 
