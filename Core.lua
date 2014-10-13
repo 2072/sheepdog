@@ -261,11 +261,11 @@ do
         6358, -- seduction
 
         -- shamans
-        76780, -- Bind Elemental
+        -- 76780, -- Bind Elemental (removed in WoD)
         51514, -- Hex
 
         -- druids
-        2637, -- Hibernate
+        -- 2637, -- Hibernate (removed in WoD)
 
         -- mages
         118, -- Polymorph (sheep)
