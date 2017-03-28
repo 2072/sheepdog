@@ -1,8 +1,6 @@
 Sheepdog
 ========
 
-[![Gratipay and Bitcoin donation options](http://img.shields.io/gratipay/2072.svg)](https://www.gratipay.com/2072/)
-
 **NOTE: Type /SHEEPDOG to open the configuration panel.**
 *Sheepdog's options are not directly available in the "Interface" panel due to ongoing tainting issues Blizzard is not willing to fix.*
 
