@@ -59,6 +59,7 @@ local L = SD.Localized_Text;
 
 SD.Constants = {};
 local SD_C = SD.Constants;
+SD_C.WOW8 = (tocversion >= 80000)
 
 
 -- SD:SetHandler (module, info, value) {{{
@@ -378,6 +379,10 @@ do
     local nothing = 'nothing';
 
     function SD:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellID, spellNAME)
+
+        if SD_C.WOW8 and event == nil then
+            timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellID, spellNAME = CombatLogGetCurrentEventInfo()
+        end
 
         -- the event must be SPELL_AURA_APPLIED
         if event ~= "SPELL_AURA_APPLIED" then
