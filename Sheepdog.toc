@@ -1,4 +1,4 @@
-## Interface: 70200
+## Interface: 80000
 ## X-Max-Interface: 80000
 ## X-Min-Interface: 40200
 
@@ -32,7 +32,7 @@
 
 ## X-ReleaseDate: "@project-date-iso@"
 ## X-Category: Combat
-## X-eMail: archarodim@teaser.fr
+## X-eMail: Sheepdog@2072productions.com
 ## X-Website: http://www.2072productions.com/to/Sheepdog.php
 
 

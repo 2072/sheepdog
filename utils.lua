@@ -1,6 +1,6 @@
 --[=[
 Sheepdog World of Warcraft Add-on
-Copyright (c) 2011-2012 by John Wellesz (Archarodim@teaser.fr)
+Copyright (c) 2011-2018 by John Wellesz (Sheepdog@2072productions.com)
 All rights reserved
 
 Version @project-version@
