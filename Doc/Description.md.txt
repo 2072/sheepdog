@@ -45,8 +45,6 @@ For anything else, use the [WoWAce forum thread][forum].
 
 Bitcoin donation address: **1WMWHi9YYgN3jYekCmGBftSNmMK2Pss4S**
 
-![stats](http://www.2072productions.com/to/sheepdogdisplaystats.gif)
-
 [AddonLoader]: http://www.wowace.com/addons/addon-loader/
 [tickets]: http://www.wowace.com/addons/sheepdog/tickets/
 [forum]: http://forums.wowace.com/showthread.php?p=314293
