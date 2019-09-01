@@ -82,6 +82,9 @@ do
     
     L["UNIT_NEARBY_IS_CROWD_CONTROLLED"] = "%q applied on %s by %s!"
 
+    L["PRINT_SUPPOTED_CC"] = "Show supported spells"
+    L["PRINT_SUPPOTED_CC_DESC"] = "Print supported spells in the chat"
+
     --]==]
     --@end-do-not-package@
 

@@ -53,6 +53,14 @@ end
 -- }}}
 
 
+function SD:TableMap(t, f)
+    local mapped_t = {};
+    for k,v in pairs(t) do
+        mapped_t[k] = f(v);
+    end
+    return mapped_t;
+end
+
 --  function SD:Debug(...) {{{
 do
     local Debug_Templates = {
@@ -133,6 +141,13 @@ function SD:GetClassHexColor(englishClass) -- {{{
     return SD_C.HexClassColor[englishClass];
 end -- }}}
 
+local NON_CLASSIC_CLASSES = {
+        ["DEMONHUNTER"]    = true,
+        ["DEATHKNIGHT"]    = true,
+        ["MONK"]           = true
+    
+};
+
 function SD:CreateClassColorTables () -- {{{
     if RAID_CLASS_COLORS then
         local class, colors;
@@ -140,8 +155,10 @@ function SD:CreateClassColorTables () -- {{{
             if LC[class] then -- thank to a wonderful add-on that adds the wrong translation "Death Knight" to the global RAID_CLASS_COLORS....
                 SD:GetClassHexColor(class);
             else
-                RAID_CLASS_COLORS[class] = nil; -- Eat that!
-                print("Sheepdog: |cFFFF0000Stupid value found in _G.RAID_CLASS_COLORS table|r\nThis will cause many issues (tainting), Sheepdog will display this message until the culprit add-on is fixed or removed, the Stupid value is: '", class, "'");
+                if not (SD_C.WOWC and NON_CLASSIC_CLASSES[class]) then
+                    RAID_CLASS_COLORS[class] = nil; -- Eat that!
+                    print("Sheepdog: |cFFFF0000Stupid value found in _G.RAID_CLASS_COLORS table|r\nThis will cause many issues (tainting), Sheepdog will display this message until the culprit add-on is fixed or removed, the Stupid value is: '", class, "'");
+                end
             end
         end
     else

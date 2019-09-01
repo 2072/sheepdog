@@ -59,7 +59,8 @@ local L = SD.Localized_Text;
 
 SD.Constants = {};
 local SD_C = SD.Constants;
-SD_C.WOW8 = (tocversion >= 80000)
+SD_C.WOWC = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
+SD_C.WOW8 = (tocversion >= 80000) or SD_C.WOWC
 
 
 -- SD:SetHandler (module, info, value) {{{
@@ -83,6 +84,11 @@ end -- }}}
 
 
 local function GetCoreOptions() -- {{{
+
+    function GetSupportedCCList()
+        return table.concat(SD:TableMap(SD_C.CC_IDS, function(id) return ("|cffffd000|Hspell:%d|h[%s]|h|r"):format(id, (GetSpellInfo(id))) end), ", ");
+    end
+
     return {
         type = 'group',
         get = function (info) return SD.db.global[info[#info]]; end,
@@ -175,12 +181,28 @@ local function GetCoreOptions() -- {{{
                 desc = L["OPT_WELCOMEMESSAGE_DESC"],
                 order = 1010,
             },
+            Header9000 = {
+                type = 'header',
+                name = '',
+                order = 1015,
+            },
+            PrintSupportedSpells = {
+                type = 'execute',
+                name = L["PRINT_SUPPOTED_CC"],
+                desc = L["PRINT_SUPPOTED_CC_DESC"],
+                func = function()
+                    SD:Print(GetSupportedCCList());
+                end,
+                order = 1016,
+            },
             Version = {
                 type = 'execute',
                 name = L["OPT_VERSION"],
                 desc = L["OPT_VERSION_DESC"],
                 guiHidden = true,
-                func = function () SD:Print(L["VERSION"], '@project-version@,', L["RELEASE_DATE"], '@project-date-iso@') end,
+                func = function ()
+                    SD:Print(L["VERSION"], '@project-version@,', L["RELEASE_DATE"], '@project-date-iso@')
+                end,
                 order = 1020,
             },
         },
@@ -251,6 +273,8 @@ end
 
 -- CC spells management {{{
 SD_C.CC_SPELLS_BY_NAME = {};
+SD_C.CC_IDS = {};
+
 do
     local CC_SPELLS = {
 
@@ -262,11 +286,11 @@ do
         6358, -- seduction
 
         -- shamans
-        -- 76780, -- Bind Elemental (removed in WoD)
-        51514, -- Hex
+        -- 76780, -- Bind Elemental (removed in WoD) and not in Classic
+        -- 51514, -- Hex
 
         -- druids
-        -- 2637, -- Hibernate (removed in WoD)
+        -- 2637, -- Hibernate (removed in WoD) back in Classic
 
         -- mages
         118, -- Polymorph (sheep)
@@ -285,18 +309,28 @@ do
         19386, -- Wyvern Sting
 
         -- monks
-        115078, -- Paralysis
+        --115078, -- Paralysis
+
     };
+
+    if SD_C.WOWC then
+        CC_SPELLS[#CC_SPELLS + 1] = 2637 -- Druid's Hibernate
+        CC_SPELLS[#CC_SPELLS + 1] = 16707 -- Shaman's classic Hex
+    else
+        CC_SPELLS[#CC_SPELLS + 1] = 115078 -- Monk's Paralysis 
+        CC_SPELLS[#CC_SPELLS + 1] = 51514 -- Shaman's retail Hex
+    end
 
     function SD:RegisterCCEffects ()
         for i, spellID in ipairs(CC_SPELLS) do
             if (GetSpellInfo(spellID)) then
                 SD_C.CC_SPELLS_BY_NAME[(GetSpellInfo(spellID))] = true;
+                SD_C.CC_IDS[#SD_C.CC_IDS + 1] = spellID;
             else
                 self:Debug(ERROR, "Missing spell:", spellID);
             end
         end
-        self:Debug(INFO, "Spells registered!");
+        self:Debug(INFO,("%d Spells registered!!"):format(#SD_C.CC_IDS));
     end
 end
 
@@ -386,19 +420,25 @@ do
 
         -- the event must be SPELL_AURA_APPLIED
         if event ~= "SPELL_AURA_APPLIED" then
-            --self:Debug(INFO2, "not SPELL_AURA_APPLIED", event);
+            --@debug@
+            --self:Debug(INFO2, "not SPELL_AURA_APPLIED", event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName);
+            --@end-debug@
             return;
         end
 
         -- the spell must be part of CC_SPELLS_BY_NAME
         if not CC_SPELLS_BY_NAME[spellNAME] then
+            --@debug@
             --self:Debug(INFO2, "not a cc spell:", spellNAME);
+            --@end-debug@
             return;
         end
 
         -- the source must be a friendly player inside you raid/group ie: not an outsider
         if band(sourceFlags, OUTSIDER) == OUTSIDER then
-            --self:Debug(INFO2, sourceName "is an outsider");
+            --@debug@
+            self:Debug(INFO2, sourceName "is an outsider");
+            --@end-debug@
             return;
         end
 
@@ -416,7 +456,7 @@ do
         if destGUID == UnitGUID('target') then
             self:TargetIsCrowdControlled();
             --@debug@
-            --self:UnitCrowdControlledNearBy(destName, destFlags, arg9, spellNAME, sourceName);
+            self:UnitCrowdControlledNearBy(destName, destRaidFlags, spellID, spellNAME, sourceName);
             --@end-debug@
         else
             self:UnitCrowdControlledNearBy(destName, destRaidFlags, spellID, spellNAME, sourceName);
@@ -456,7 +496,7 @@ function SD:UnitCrowdControlledNearBy(unitName, unitRaidFlags, spellID, spellNam
 
     -- extract raid target number
     local raidIcon = SD:GetHighestBitPostion(band(unitRaidFlags, 0xFF));
-    --self:Debug(raidIcon, unitRaidFlags, band(unitRaidFlags, 0xFF));
+    self:Debug(raidIcon, unitRaidFlags, band(unitRaidFlags, 0xFF));
 
     local message = (L["UNIT_NEARBY_IS_CROWD_CONTROLLED"]):format( 
         ("|cff11cc00|Hspell:%d|h%s|h|r"):format(spellID, self:SafeString( spellName ) ), -- clickable spellname
