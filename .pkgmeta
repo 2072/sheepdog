@@ -26,6 +26,8 @@ externals:
     Libs/AceGUI-3.0-SharedMediaWidgets:
         url: https://repos.wowace.com/wow/ace-gui-3-0-shared-media-widgets/trunk
 
+enable-nolib-creation: yes
+
 #manual-changelog:
 #    filename: changelog.md.txt
 #    markup-type: markdown
