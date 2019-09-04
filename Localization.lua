@@ -65,21 +65,21 @@ do
 
     L["OPT_TARGETING_SOUND"] = "Targeting Sound"
     L["OPT_TARGETING_SOUND_DESC"] = "Choose the sound Sheepdog will play when you target a crowd controlled unit"
-    
+
     L["OPT_ALERT_SOUND"] = "Alert Sound"
     L["OPT_ALERT_SOUND_DESC"] = "Choose the sound Sheepdog will play when a unit is crowd-controlled nearby"
 
     L["OPT_NEARBYALERT"] = "Nearby crowd-control alerts"
     L["OPT_NEARBYALERT_DESC"] = "Alerts you when something is being crowd-controlled somewhere around you"
-    
+
     L["OPT_USERAIDALERTFRAME"] = "Use raid alerts' frame"
     L["OPT_USERAIDALERTFRAME_DESC"] = "Display messages using the raid alert style (only uses the style, no actual raid alert is made)"
-    
+
     L["OPT_WELCOMEMESSAGE"] = "Welcome message"
     L["OPT_WELCOMEMESSAGE_DESC"] = "Display a message when Sheepdog is loaded"
 
     L["TARGET_IS_CROWD_CONTROLLED"] = "Your target is crowd-controlled!"
-    
+
     L["UNIT_NEARBY_IS_CROWD_CONTROLLED"] = "%q applied on %s by %s!"
 
     L["PRINT_SUPPOTED_CC"] = "Show supported spells"

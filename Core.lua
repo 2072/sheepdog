@@ -236,7 +236,7 @@ function SD:OnInitialize()
     --LibStub("AceConfigDialog-3.0"):AddToBlizOptions(tostring(self));
 
     self:RegisterChatCommand('Sheepdog', function() LibStub("AceConfigDialog-3.0"):Open("Sheepdog") end, true);
-    
+
 
     self:RegisterCCEffects();
 
@@ -317,7 +317,7 @@ do
         CC_SPELLS[#CC_SPELLS + 1] = 2637 -- Druid's Hibernate
         CC_SPELLS[#CC_SPELLS + 1] = 16707 -- Shaman's classic Hex
     else
-        CC_SPELLS[#CC_SPELLS + 1] = 115078 -- Monk's Paralysis 
+        CC_SPELLS[#CC_SPELLS + 1] = 115078 -- Monk's Paralysis
         CC_SPELLS[#CC_SPELLS + 1] = 51514 -- Shaman's retail Hex
     end
 
@@ -461,7 +461,7 @@ do
         else
             self:UnitCrowdControlledNearBy(destName, destRaidFlags, spellID, spellNAME, sourceName);
         end
-       
+
     end
 end
 
@@ -498,7 +498,7 @@ function SD:UnitCrowdControlledNearBy(unitName, unitRaidFlags, spellID, spellNam
     local raidIcon = SD:GetHighestBitPostion(band(unitRaidFlags, 0xFF));
     self:Debug(raidIcon, unitRaidFlags, band(unitRaidFlags, 0xFF));
 
-    local message = (L["UNIT_NEARBY_IS_CROWD_CONTROLLED"]):format( 
+    local message = (L["UNIT_NEARBY_IS_CROWD_CONTROLLED"]):format(
         ("|cff11cc00|Hspell:%d|h%s|h|r"):format(spellID, self:SafeString( spellName ) ), -- clickable spellname
         self:ColorText(self:SafeString( unitName ), "FFFF0000") .. (raidIcon ~= 0 and (" (%s:0|t)"):format( ICON_LIST[raidIcon] ) or "" ), -- target name in red with raid icon
         ("|Hplayer:%s|h%s|h"):format(self:SafeString( sourceName ), self:ColorText(self:SafeString( sourceName ), sourceClassColor)) -- clicable colored player name

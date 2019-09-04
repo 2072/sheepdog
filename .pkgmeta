@@ -1,6 +1,6 @@
 # vim:syntax=YAML:expandtab
 externals:
-    
+
     Libs/LibStub:
         url: https://repos.wowace.com/wow/libstub/trunk
     Libs/CallbackHandler-1.0:

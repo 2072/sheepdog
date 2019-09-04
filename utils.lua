@@ -48,7 +48,7 @@ function SD:UnitName(Unit)
             return name.."-"..server;
         else
             return name;
-        end 
+        end
 end
 -- }}}
 
@@ -145,7 +145,7 @@ local NON_CLASSIC_CLASSES = {
         ["DEMONHUNTER"]    = true,
         ["DEATHKNIGHT"]    = true,
         ["MONK"]           = true
-    
+
 };
 
 function SD:CreateClassColorTables () -- {{{
