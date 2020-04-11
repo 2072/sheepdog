@@ -41,11 +41,9 @@ Sheepdog supports [AddonLoader][]: it will be loaded when you enter in combat or
 
 To report issues or ask for new features, use the [ticket system][tickets].
 
-For anything else, use the [WoWAce forum thread][forum].
 
-Bitcoin donation address: **1WMWHi9YYgN3jYekCmGBftSNmMK2Pss4S**
+Bitcoin donation address: [**1WMWHi9YYgN3jYekCmGBftSNmMK2Pss4S**](bitcoin:1WMWHi9YYgN3jYekCmGBftSNmMK2Pss4S)
 
 [AddonLoader]: http://www.wowace.com/addons/addon-loader/
 [tickets]: http://www.wowace.com/addons/sheepdog/tickets/
-[forum]: http://forums.wowace.com/showthread.php?p=314293
 
