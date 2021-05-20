@@ -59,8 +59,7 @@ local L = SD.Localized_Text;
 
 SD.Constants = {};
 local SD_C = SD.Constants;
-SD_C.WOWC = WOW_PROJECT_ID == WOW_PROJECT_CLASSIC
-SD_C.WOW8 = (tocversion >= 80000) or SD_C.WOWC
+SD_C.WOWC = WOW_PROJECT_ID ~= WOW_PROJECT_MAINLINE
 
 
 -- SD:SetHandler (module, info, value) {{{
@@ -414,7 +413,7 @@ do
 
     function SD:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellID, spellNAME)
 
-        if SD_C.WOW8 and event == nil then
+        if event == nil then
             timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellID, spellNAME = CombatLogGetCurrentEventInfo()
         end
 
