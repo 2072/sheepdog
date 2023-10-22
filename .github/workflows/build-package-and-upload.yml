@@ -38,8 +38,8 @@ jobs:
         with:
           args: -g classic
 
-      - name: Package wraith
-        if: ${{ !contains(github.event.head_commit.message, '#skipwraith') }}
+      - name: Package wrath
+        if: ${{ !contains(github.event.head_commit.message, '#skipwrath') }}
         uses: BigWigsMods/packager@master
         with:
           args: -g wrath
