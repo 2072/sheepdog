@@ -47,6 +47,7 @@ local LSM = LibStub("AceGUISharedMediaWidgets-1.0");
 local _, _, _, tocversion = GetBuildInfo();
 T._tocversion = tocversion;
 
+local GetSpellInfo = _G.C_Spell and _G.C_Spell.GetSpellName or _G.GetSpellInfo;
 
 
 --@debug@
