@@ -343,7 +343,16 @@ local CC_SPELLS_BY_NAME = SD_C.CC_SPELLS_BY_NAME;
 do
     local UnitExists     = _G.UnitExists;
     local UnitCanAttack  = _G.UnitCanAttack;
-    local UnitDebuff     = _G.UnitDebuff;
+    local UnitDebuff     = _G.UnitDebuff or function (unitToken, i)
+        local auraData = C_UnitAuras.GetDebuffDataByIndex(unitToken, i);
+
+        if not auraData then
+			return nil;
+		end
+
+        return auraData.name;
+    end;
+
     local Debuff = false;
     function SD:Check_Unit(unit)
 
