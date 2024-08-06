@@ -1,5 +1,3 @@
-## Interface: 100207, 110000
-## Interface-Retail: 100207, 110000
 ## Interface: 110000, 110002
 ## Interface-Retail: 110000, 110002
 ## Interface-Classic: 11503
