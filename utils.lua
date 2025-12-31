@@ -61,6 +61,29 @@ function SD:TableMap(t, f)
     return mapped_t;
 end
 
+-- tcopy: recursively copy contents of one table to another
+function SD:tcopy(to, from)   -- "to" must be a table (possibly empty)
+    if (type(from) ~= "table") then
+        return error(("HHTD:tcopy: bad argument #2 'from' must be a table, got '%s' instead"):format(type(from)),2);
+    end
+
+    if (type(to) ~= "table") then
+        return error(("HHTD:tcopy: bad argument #1 'to' must be a table, got '%s' instead"):format(type(to)),2);
+    end
+    for k,v in pairs(from) do
+        if(type(v)=="table") then
+            if not to[k] then
+                to[k] = {}; -- this generates garbage
+            elseif type(to[k]) ~= 'table' then
+                self:Debug(ERROR, k, to[k], 'is not a table');
+            end
+            self:tcopy(to[k], v);
+        else
+            to[k] = v;
+        end
+    end
+end
+
 --  function SD:Debug(...) {{{
 do
     local Debug_Templates = {
@@ -113,7 +136,27 @@ local RAID_CLASS_COLORS = _G.RAID_CLASS_COLORS;
 
 SD_C.ClassesColors = { };
 
-local LC = _G.LOCALIZED_CLASS_NAMES_MALE;
+local LC = {}
+
+local function RegisterClassLocals_Once() -- {{{
+
+
+    -- Make sure to never crash if some locals are missing (seen this happen on
+    -- Chinese clients when relying on LOCALIZED_CLASS_NAMES_MALE constant)
+    -- While that was probably caused by a badd-on redefining the constant,
+    -- it's best to stay on the safe side...
+
+    local localizedClasses = {};
+
+    SD:tcopy(localizedClasses, LocalizedClassList and LocalizedClassList(false) or FillLocalizedClassList({}, false));
+
+
+    LC = setmetatable(localizedClasses, {__index = function(t,k) return k end});
+
+    RegisterClassLocals_Once = nil;
+end -- }}}
+
+RegisterClassLocals_Once();
 
 function SD:GetClassColor (englishClass) -- {{{
     if not SD_C.ClassesColors[englishClass] then
@@ -157,7 +200,7 @@ function SD:CreateClassColorTables () -- {{{
             else
                 if not (SD_C.WOWC and NON_CLASSIC_CLASSES[class]) then
                     RAID_CLASS_COLORS[class] = nil; -- Eat that!
-                    print("Sheepdog: |cFFFF0000Stupid value found in _G.RAID_CLASS_COLORS table|r\nThis will cause many issues (tainting), Sheepdog will display this message until the culprit add-on is fixed or removed, the Stupid value is: '", class, "'");
+                    print("Sheepdog: |cFFFF0000Unexpected value found in _G.RAID_CLASS_COLORS table|r\nThis will cause many issues (tainting), Sheepdog will display this message until the culprit add-on is fixed or removed, the Stupid value is: '", class, "'");
                 end
             end
         end
